@@ -24,6 +24,12 @@ h6 {
   padding: 0 5%;
 }
 
+.education-entry::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
 h1 {
   font-size: 40px;
   color: #f5a623;
