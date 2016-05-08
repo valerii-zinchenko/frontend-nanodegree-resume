@@ -32,7 +32,7 @@ function inName(name) {
 		return name;
 	}
 
-	name[0] = name[0].toUpperCase() + name.slice(1).toLowerCase();
+	name[0] = name[0][0].toUpperCase() + name[0].slice(1).toLowerCase();
 
 	if (name[1]) {
 		name[1] = name[1].toUpperCase();
@@ -46,7 +46,6 @@ var data = {
 		name: "Valerii Zinchenko",
 		role: "Front-End Developer",
 		contacts: {
-			mobile: "+380 (93) 116-5000",
 			email: "zinchenko.valerii@gmail.com",
 			github: "valerii-zinchenko",
 			location: "Kiev, Ukraine"
@@ -83,7 +82,6 @@ var data = {
 			);
 
 			contacts.append([
-					[HTMLmobile, this.contacts.mobile],
 					[HTMLemail, this.contacts.email],
 					[HTMLgithub, this.contacts.github],
 					[HTMLlocation, this.contacts.location]
@@ -109,21 +107,28 @@ var data = {
 	education: {
 		schools: [
 			{
+				name: "Hochschule für Telekommunikation Leipzig der Deutsche Telekom AG",
+				location: "Leipzig, Germany",
+				degree: "Master of Engineering (M.Eng.)",
+				majors: "<a href='http://www.idw-online.de/pages/de/news500377' target='_blank'>Winner of DAAD‑Prize 2012 in HfTL</a>",
+				dates: "09.2010 - 10.2012"
+			},
+			{
 				name: "Kiev College of Communication",
 				location: "Kiev, Ukraine",
 				degree: "Bachelor of Engineering (B.Eng.)",
-				majors: "",
+				//majors: "Finished with honors",
 				dates: "09.2005 - 06.2010"
-			},
-			{
-				name: "Hochschule für Telekommunikation Leipzig der Deutsche Telekom AG (eng. University of Applied Science of Deutsche Telekom AG)",
-				location: "Leipzig, Germany",
-				degree: "Master of Engineering (M.Eng.)",
-				majors: "Winner of DAAD‑Prize 2012 in HfTL (http://www.idw-online.de/pages/de/news500377)",
-				dates: "09.2010 - 10.2012"
 			}
 		],
 		onlineCourses: [
+			{
+				title: "Front-End Web Developer Nanodegree",
+				school: "Udacity",
+				dates: "03.2016 - now",
+				url: "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001",
+				certificate: ""
+			},
 			{
 				title: "edX XSeries HTML5 from W3C",
 				school: "edX",
@@ -150,46 +155,25 @@ var data = {
 			var education = $("#education");
 			
 			education.append(this.schools.map(function(item) {
-				var container = $(HTMLschoolStart);
+				var container = $(complexReplacer(HTMLschool, item));
 
-				container.append.apply(container, [
-					complexReplacer(HTMLschoolNameDegree, item)
-				].concat([
-						[HTMLschoolDates, item.dates],
-						[HTMLschoolLocation, item.location]
-					].map(function(entry) {
-						return replacer.apply(null, entry);
-					})
-				));
-
-				if (item.major) {
+				if (item.majors) {
 					container.append(
-						replacer(HTMLschoolMajor, item.major)
+						replacer(HTMLschoolMajor, item.majors)
 					);
 				}
 
 				return container;
 			}));
 			
-			if (this.onlineCourses.length > 0){
+			if (this.onlineCourses.length > 0) {
 				education.append(HTMLonlineClasses);
+
 				education.append(this.onlineCourses.map(function(item) {
-					var container = $(HTMLschoolStart);
+					var container = $(complexReplacer(HTMLonline, item));
 
-					container.append.apply(container, [
-						complexReplacer(HTMLonlineTitleSchool, item)
-					].concat([
-							[HTMLonlineDates, item.dates],
-							[HTMLonlineCertificate, item.certificate],
-						].map(function(entry) {
-							return replacer.apply(null, entry);
-						})
-					));
-
-					if (item.major) {
-						container.append(
-							replacer(HTMLschoolMajor, item.major)
-						);
+					if (item.certificate) {
+						container.append(replacer(HTMLonlineCertificate, item.certificate));
 					}
 
 					return container;
@@ -202,7 +186,7 @@ var data = {
 		jobs: [
 			{
 				employer: "Luxoft",
-				title: "Senior Front-End Developer",
+				title: "Front-End Developer",
 				location: "Kiev, Ukraine",
 				dates: "05.2014 – in progress (>2 years)",
 				description: "design an architecture, develop and support SPA for airlines; customize the application for each airlines; optimize and speedup the application's loading; refactor, stabilize and uniform the application's core; integrate task runner, unit testing framework and adapt the Maven build file for CI; lead/manage a small team of developers",
@@ -234,21 +218,8 @@ var data = {
 			}
 		],
 		display: function(){
-			$("#workExperience").append(this.jobs.map(function(job) {
-				var container = $(HTMLworkStart);
-
-				container.append.apply(container, [
-					complexReplacer(HTMLworkEmployerTitle, job)
-				].concat([
-						[HTMLworkDates, job.dates],
-						[HTMLworkLocation, job.location],
-						[HTMLworkDescription, job.description]
-					].map(function(entry) {
-						return replacer.apply(null, entry);
-					})
-				));
-
-				return container;
+			$("#workExperience").append(this.jobs.map(function(item) {
+				return complexReplacer(HTMLwork, item);
 			}));
 		}
 	},
@@ -272,19 +243,7 @@ var data = {
 		],
 		display: function(){
 			$("#projects").append(this.projects.map(function(item) {
-				var container = $(HTMLprojectStart);
-
-				container.append.apply(container, [
-					complexReplacer(HTMLprojectTitle, item)
-				].concat([
-						[HTMLprojectDates, item.dates],
-						[HTMLprojectDescription, item.description]
-					].map(function(entry) {
-						return replacer.apply(null, entry);
-					})
-				));
-
-				return container;
+				return complexReplacer(HTMLproject, item);
 			}));
 		}
 	}

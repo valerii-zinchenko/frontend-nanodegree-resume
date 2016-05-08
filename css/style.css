@@ -97,6 +97,9 @@ a {
   margin-top: 10px;
   display: block;
 }
+.education-entry > em > a {
+	display: inline;
+}
 
 .welcome-message {
   font-style: italic;
