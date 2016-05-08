@@ -57,30 +57,13 @@ var data = {
 			var container = $("#header");
 			var contacts = container.find("#topContacts");
 
-			container.prepend([
-					[HTMLheaderName, this.name],
-					[HTMLheaderRole, this.role]
-				].map(function(entry) {
-					return replacer.apply(null, entry);
-				})
-			);
+			container.prepend(complexReplacer(HTMLheader, this));
 
-			contacts.append([
-					[HTMLemail, this.contacts.email],
-					[HTMLgithub, this.contacts.github],
-					[HTMLlocation, this.contacts.location]
-				].map(function(entry) {
-					return replacer.apply(null, entry);
-				})
-			);
+			contacts.append(complexReplacer(HTMLcontacts, this.contacts));
 
-			container.append([
-					[HTMLbioPic, this.biopic],
-					[HTMLwelcomeMsg, this.welcomeMessage],
-					[HTMLskillsStart, ""],
-				].map(function(entry) {
-					return replacer.apply(null, entry);
-				})
+			container.append(
+				complexReplacer(HTMLbioPicWelcomeMsg, this),
+				replacer(HTMLskillsStart, "")
 			);
 			container.find("#skills").append(this.skills.map(function(skill) {
 				return replacer(HTMLskills, skill);
@@ -94,15 +77,17 @@ var data = {
 				name: "Hochschule für Telekommunikation Leipzig der Deutsche Telekom AG",
 				location: "Leipzig, Germany",
 				degree: "Master of Engineering (M.Eng.)",
-				majors: "<a href='http://www.idw-online.de/pages/de/news500377' target='_blank'>Winner of DAAD‑Prize 2012 in HfTL</a>",
-				dates: "09.2010 - 10.2012"
+				major: "Information and Communication Technologies",
+				dates: "09.2010 - 10.2012",
+				url: "https://www.hft-leipzig.de/"
 			},
 			{
 				name: "Kiev College of Communication",
 				location: "Kiev, Ukraine",
 				degree: "Bachelor of Engineering (B.Eng.)",
-				//majors: "Finished with honors",
-				dates: "09.2005 - 06.2010"
+				major: "Information Networks of Communications",
+				dates: "09.2005 - 06.2010",
+				url: "http://kkz.net.ua/"
 			}
 		],
 		onlineCourses: [
@@ -239,6 +224,6 @@ for (var component in data) {
 	}
 }
 
-$("#main").append(internationalizeButton);
+$("main").append(internationalizeButton);
 
 $("#mapDiv").append(googleMap);
