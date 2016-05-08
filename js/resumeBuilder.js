@@ -25,22 +25,6 @@ function complexReplacer(str, data) {
 	return str;
 }
 
-function inName(name) {
-	name = name.trim().split(" ");
-
-	if (name && name.length === 0) {
-		return name;
-	}
-
-	name[0] = name[0][0].toUpperCase() + name[0].slice(1).toLowerCase();
-
-	if (name[1]) {
-		name[1] = name[1].toUpperCase();
-	}
-
-	return name.join(" ");
-}
-
 var data = {
 	bio: {
 		name: "Valerii Zinchenko",
