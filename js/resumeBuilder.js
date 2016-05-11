@@ -28,7 +28,7 @@ function complexReplacer(str, data) {
 var data = {
 	bio: {
 		name: "Valerii Zinchenko",
-		role: "Front-End Developer",
+		role: "Front-End Web Developer",
 		contacts: {
 			email: "zinchenko.valerii@gmail.com",
 			github: "valerii-zinchenko",
@@ -41,33 +41,37 @@ var data = {
 			"JavaScript",
 			"HTML5",
 			"CSS",
+			"Bootstrap",
 			"LESS",
 			"RequireJS",
-			"jQuery",
 			"Backbone",
 			"Underscore",
+			"jQuery",
 			"lodash",
 			"Grunt",
 			"mocha",
 			"sinon",
-			"PhantomJS"
+			"PhantomJS",
+			"vim"
 		],
 		biopic: "images/fry.jpg",
 		display: function(){
 			var container = $("#header");
-			var contacts = container.find("#topContacts");
-
-			container.prepend(complexReplacer(HTMLheader, this));
-
-			contacts.append(complexReplacer(HTMLcontacts, this.contacts));
+			var contacts = complexReplacer(HTMLcontacts, this.contacts);
 
 			container.append(
+				complexReplacer(HTMLheader, this),
 				complexReplacer(HTMLbioPicWelcomeMsg, this),
-				replacer(HTMLskillsStart, "")
+				HTMLskillsStart
 			);
+
+			container.find("#topContacts").append(contacts);
+
 			container.find("#skills").append(this.skills.map(function(skill) {
 				return replacer(HTMLskills, skill);
 			}));
+
+			$("#footerContacts").append(contacts);
 		}
 	},
 
@@ -155,10 +159,19 @@ var data = {
 		jobs: [
 			{
 				employer: "Luxoft",
-				title: "Front-End Developer",
+				title: "Front-End Web Developer",
 				location: "Kiev, Ukraine",
 				dates: "05.2014 – in progress (>2 years)",
-				description: "design an architecture, develop and support SPA for airlines; customize the application for each airlines; optimize and speedup the application's loading; refactor, stabilize and uniform the application's core; integrate task runner, unit testing framework and adapt the Maven build file for CI; lead/manage a small team of developers",
+				description: "iTravelJS - is a Single Page Application which can provide different functionalities for airline companies such as online booking, check in, login/registration into a loyalty programm, track delayed baggage, check flight status and so on. At the middle of the autumn 2014 it was deployed into the production. Since that time three airlines are using this app and five airline companies are going to go live till the end of 2016. In the project I was fully responsible for a client-side. Also I was involved into the discussions of the interface design between the server and the client app.",
+				keyItems: [
+					"design an architecture, develop and support SPA",
+					"refactor, stabilize and uniform the application's core",
+					"introduce the application configuration system for each airline and each environment",
+					"optimize and speedup the application's loading",
+					"integrate task runner, unit testing framework and adapt the Maven build file for CI",
+					"improve the logging system of JS exceptions for the furthe analysis and fixing",
+					"lead/manage a small team of developers"
+				],
 				url: "http://www.luxoft.com/"
 			},
 			{
@@ -166,7 +179,14 @@ var data = {
 				title: "Software and Web Developer",
 				location: "Kiev, Ukraine",
 				dates: "11.2012 – 04.2014 (1 year 6 months)",
-				description: "support and development of Energine CMF (on GitHub): develop special effects; improve, refactor and document code; write tests; bug fixing; move projects from SVN to Git with history; design and develop forecasting system for servers; make researches.",
+				description: "At the beginning I was working on different directions. I discovered recommendation system, integrated few DTrace scripts for our servers to speedup theirs notification and synchronisation. Then I started to design and develop forecasting system for server parameters. In the middle of 2013 I was involved into the main project - Energine CMF. First, I have successfully migrated all projects from SVN to Git and GitHub systems with saving of all histories and connecting the existing GithHub profiles to the past commits. Then I made a code review of the whole JavaScript code, refactored and improved its performance and docummented it. After this I started to support and develop the JavaScript code of Energine CMF.",
+				keyItems: [
+					"support and development of Energine CMF (on GitHub); develop special effects",
+					"improve, refactor and document code; write tests; fix bugs",
+					"move projects from SVN to Git with history",
+					"design and develop forecasting system for servers",
+					"make researches"
+				],
 				url: "http://eggmengroup.com/"
 			},
 			{
@@ -174,21 +194,40 @@ var data = {
 				title: "Software Developer (part time)",
 				location: "Kiev, Ukraine",
 				dates: "06.2010 - 10.2012 (2 years 4 months)",
-				description: "development of program to process MRIs (magnetic resonance images); development of script to build mathematical human eye in 3D; create a short presentation movie in 3D of diagnostic and treatment of human eye tumor; build 3D models of tumors",
+				description: "In parralel with the education I have supported Center of Eye Microsurgery in Kiev. At the beginning I have built 3D models of tumors from the MRIs (magnetic resonance images). In a few months I was requested to build an application that recreates a 3D model of the tumore from the MRIs and places it in a mathematical model of the eye. Project was stopped.",
+				keyItems: [
+					"development of program to process MRIs and recreates tumore",
+					"development of script to build mathematical human eye in 3D",
+					"create a short presentation movie in 3D of diagnostic and treatment of human eye tumor",
+					"build 3D models of tumors"
+				],
 				url: "http://cmho.com.ua/ua/"
 			},
 			{
-				employer: "Hochschule für Telekommunikation Leipzig der Deutsche Telekom AG (HfTL), Institut für Hochfrequenztechnik",
+				employer: "Hochschule für Telekommunikation Leipzig der Deutsche Telekom AG, Institut für Hochfrequenztechnik (IHF)",
 				title: "Laboratory assistant",
 				location: "Leipzig, Germany",
 				dates: "09.2010 – 04.2012 (1 year 7 months)",
-				description: "design a process chain from the point of EMC between power station, electric vehicle and communication system (sources and receivers of noise) and verify German and international standards for this chain; assistant in EMC‑Laboratory; development of virtual instruments (VI) in LabVIEW",
+				description: "In parralel with the education I was working in the IHF laboratories as an assistant.",
+				keyItems: [
+					"design a process chain from the point of EMC between power station, electric vehicle and communication system",
+					"assistant in EMC‑Laboratory",
+					"development of virtual instruments (VI) in LabVIEW"
+				],
 				url: "https://www.hft-leipzig.de/"
 			}
 		],
 		display: function(){
 			$("#workExperience").append(this.jobs.map(function(item) {
-				return complexReplacer(HTMLwork, item);
+				var container = $(complexReplacer(HTMLwork, item));
+
+				container.find(".key-items").append(
+					item.keyItems.map(function(keyItem) {
+						return replacer(HTMLworkItem, keyItem);
+					})
+				);
+
+				return container;
 			}));
 		}
 	},

@@ -12,14 +12,18 @@ Cameron Pittman
 These are HTML strings. As part of the course, you'll be using JavaScript functions
 replace the %data% placeholder text you see in them.
 */
-var HTMLheader = ''+
+var HTMLheader =
 	'<header>'+
-		'<h1 id="name">%name%</h1> '+
-		'<span>%role%</span><hr>'+
+		'<div class="name">'+
+			'<h1 id="name">%name%</h1> '+
+			'<p class="role">%role%</p>'+
+		'</div>'+
+		'<ul id="topContacts"></ul>'+
+		'<hr class="clear-float">'+
 	'</header>';
 
 var HTMLcontactGeneric = '<li class="flex-item"><span class="orange-text">%contact%</span><span class="white-text">%data%</span></li>';
-var HTMLcontacts = ''+
+var HTMLcontacts =
 //	'<li class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%mobile%</span></li>'+
 	'<li class="flex-item"><span class="orange-text">email</span><span class="white-text">%email%</span></li>'+
 //	'<li class="flex-item"><span class="orange-text">twitter</span><span class="white-text">%twitter%</span></li>'+
@@ -29,7 +33,7 @@ var HTMLcontacts = ''+
 
 var HTMLbioPicWelcomeMsg = '<img src="%biopic%" class="biopic"><span class="welcome-message">%welcomeMessage%</span>';
 
-var HTMLskillsStart = ''+
+var HTMLskillsStart =
 	'<section>'+
 		'<header>'+
 			'<h3 id="skills-h3">Skills at a Glance:</h3>'+
@@ -38,7 +42,7 @@ var HTMLskillsStart = ''+
 	'</section>';
 var HTMLskills = '<li class="flex-item"><span class="white-text">%data%</span></li>';
 
-var HTMLwork = ''+
+var HTMLwork =
 	'<section class="work-entry">'+
 		'<header>'+
 			'<a href="%url%" target="_blank">%employer% - %title%</a>'+
@@ -46,9 +50,16 @@ var HTMLwork = ''+
 			'<div class="location-text">%location%</div>'+
 		'</header>'+
 		'<article><br>%description%</article>'+
+		'<section>'+
+			'<header>'+
+				'<h4>Main responsibilities</h4>'+
+			'</header>'+
+			'<ul class="key-items"></ul>'+
+		'</section>'+
 	'</section>';
+var HTMLworkItem = '<li>%data%</li>';
 
-var HTMLproject = ''+
+var HTMLproject =
 	'<section class="project-entry">'+
 		'<header>'+
 			'<a href="%url%" target="_blank">%title%</a>'+
@@ -58,7 +69,7 @@ var HTMLproject = ''+
 		//'<img src="%data%">'+
 	'</section>';
 
-var HTMLschool = ''+
+var HTMLschool =
 	'<section class="education-entry">'+
 		'<header>'+
 			'<a href="%url%">%name% - %degree%</a>'+
@@ -69,7 +80,7 @@ var HTMLschool = ''+
 	'</section>';
 
 var HTMLonlineClasses = '<h3>Online Courses</h3>';
-var HTMLonline = ''+
+var HTMLonline =
 	'<section class="education-entry">'+
 		'<a href="%url%">%title% - %school%</a>'+
 		'<div class="date-text">%dates%</div>'+
