@@ -24,9 +24,9 @@ var HTMLheader =
 
 var HTMLcontactGeneric = '<li class="flex-item"><span class="orange-text">%contact%</span><span class="white-text">%data%</span></li>';
 var HTMLcontacts =
-//	'<li class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%mobile%</span></li>'+
+	'<li class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%mobile%</span></li>'+
 	'<li class="flex-item"><span class="orange-text">email</span><span class="white-text">%email%</span></li>'+
-//	'<li class="flex-item"><span class="orange-text">twitter</span><span class="white-text">%twitter%</span></li>'+
+	'<li class="flex-item"><span class="orange-text">twitter</span><span class="white-text">%twitter%</span></li>'+
 	'<li class="flex-item"><span class="orange-text">github</span><span class="white-text">%github%</span></li>'+
 //	'<li class="flex-item"><span class="orange-text">blog</span><span class="white-text">%blog%</span></li>'+
 	'<li class="flex-item"><span class="orange-text">location</span><span class="white-text">%location%</span></li>';
@@ -66,8 +66,8 @@ var HTMLproject =
 			'<div class="date-text">%dates%</div>'+
 		'</header>'+
 		'<article><br>%description%</article>'+
-		//'<img src="%data%">'+
 	'</section>';
+var HTMLprojectImg = '<img src="%data%">';
 
 var HTMLschool =
 	'<section class="education-entry">'+
@@ -76,16 +76,17 @@ var HTMLschool =
 			'<div class="date-text">%dates%</div>'+
 			'<div class="location-text">%location%</div>'+
 		'</header>'+
-		'<p><em><br>Major: %major%</em></p>'+
+		'<p><em><br>Major: %majors%</em></p>'+
 	'</section>';
 
 var HTMLonlineClasses = '<h3>Online Courses</h3>';
 var HTMLonline =
 	'<section class="education-entry">'+
 		'<a href="%url%">%title% - %school%</a>'+
-		'<div class="date-text">%dates%</div>'+
+		'<div class="date-text">%date%</div>'+
+		'<br><a href="%url%">%url%</a>'+
 	'</section>';
-var HTMLonlineCertificate = '<br><a href="%certificate%" target="_blank">Certificate</a>';
+var HTMLonlineCertificate = '<a href="%certificate%" target="_blank">Certificate</a><br>';
 
 var internationalizeButton = '<button>Internationalize</button>';
 var googleMap = '<div id="map"></div>';
